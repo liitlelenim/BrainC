@@ -1,12 +1,12 @@
 #include <stdio.h>
-#include <malloc.h>
+#include <stdlib.h>
 #include "int_stack.h"
 
 void interpret_brainfuck_code(char *brainfuck_source_code){
     int_stack loop_stack;
     loop_stack.size = 0;
     int data_pointer = 0;
-    char *data_buffer = (char*)(malloc(sizeof(char)*30000));
+    char *data_buffer = (char*)(calloc(30000,sizeof(char)));
     int src_iterator = 0;
     char current_command = *(brainfuck_source_code+src_iterator);
     while (current_command != '\0'){
@@ -93,7 +93,7 @@ char* read_file_to_string(char* file_path ){
         fseek(file_ptr,0,SEEK_END);
         file_length = ftell(file_ptr);
         fseek(file_ptr,0,SEEK_SET);
-        buffer = (char*)malloc(file_length*sizeof(char)); //all rights to this fix reserved by MorseCTeam ©
+        buffer = (char*)malloc(file_length*sizeof(char)); //all rights to this fix reserved by MorseCTeam ï¿½
         if(buffer){
             fread(buffer,sizeof(char),file_length,file_ptr);
         }
